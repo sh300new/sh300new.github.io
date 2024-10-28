@@ -2,13 +2,19 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>{{ page.title }}</title>
-  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title | default: "기술 블로그" }}</title>
+  <link rel="stylesheet" href="{{ "/assets/styles.css" | relative_url }}">
 </head>
 <body>
-  <!-- 사이드바를 포함합니다. -->
-  {% include sidebar.html %}
-
+  <div class="sidebar">
+    <h2>카테고리</h2>
+    <ul>
+      <li><a href="{{ "/project" | relative_url }}">프로젝트</a></li>
+      <li><a href="{{ "/tech" | relative_url }}">기술 고민</a></li>
+      <li><a href="{{ "/job" | relative_url }}">잡 고민</a></li>
+    </ul>
+  </div>
   <div class="content">
     {{ content }}
   </div>
