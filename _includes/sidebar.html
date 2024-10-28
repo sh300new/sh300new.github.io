@@ -26,7 +26,7 @@
       <a href="javascript:void(0)" onclick="toggleSubcategories('job')">잡 고민</a>
       <ul id="job" style="display: none;">
         {% for page in site.job %}
-          <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+          <li><a href="{{ page.url | append: '.html' }}">{{ page.title }}</a></li>
         {% endfor %}
       </ul>
     </li>
