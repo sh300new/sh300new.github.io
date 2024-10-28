@@ -24,25 +24,21 @@ body {
 }
 
 /* 상위 카테고리 글자 진하게 */
-.sidebar ul > li > a {
+.sidebar > ul > li > a {
   font-weight: bold;
+  color: #333;
+  text-decoration: none;
 }
 
 .sidebar ul li {
   margin: 10px 0;
 }
 
-.sidebar ul li a {
-  color: #333;
-  text-decoration: none;
-}
-
 /* 하위 카테고리 들여쓰기 */
-.sidebar ul ul {
+.sidebar > ul > li > ul {
   padding-left: 20px; /* 공백 두 개에 해당하는 들여쓰기 */
 }
 
-/* 드롭다운 초기 상태 */
 .dropdown {
   display: none;
   list-style-type: none;
