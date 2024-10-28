@@ -10,13 +10,41 @@
   <div class="sidebar">
     <h2>카테고리</h2>
     <ul>
-      <li><a href="{{ "/project" | relative_url }}">프로젝트</a></li>
-      <li><a href="{{ "/tech" | relative_url }}">기술 고민</a></li>
-      <li><a href="{{ "/job" | relative_url }}">잡 고민</a></li>
+      <li>
+        <a href="javascript:void(0);" onclick="toggleDropdown('project')">프로젝트</a>
+        <ul id="project" class="dropdown">
+          {% for post in site.project %}
+            <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </li>
+      <li>
+        <a href="javascript:void(0);" onclick="toggleDropdown('tech')">기술 고민</a>
+        <ul id="tech" class="dropdown">
+          {% for post in site.tech %}
+            <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </li>
+      <li>
+        <a href="javascript:void(0);" onclick="toggleDropdown('job')">잡 고민</a>
+        <ul id="job" class="dropdown">
+          {% for post in site.job %}
+            <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </li>
     </ul>
   </div>
   <div class="content">
     {{ content }}
   </div>
+
+  <script>
+    function toggleDropdown(id) {
+      var dropdown = document.getElementById(id);
+      dropdown.style.display = dropdown.style.display === "none" ? "block" : "none";
+    }
+  </script>
 </body>
 </html>
