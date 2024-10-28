@@ -2,13 +2,13 @@ theme: jekyll-theme-minimal
 collections:
   project:
     output: true
-    permalink: /project/:name
+    permalink: /project/:title/
   tech:
     output: true
-    permalink: /tech/:name
+    permalink: /tech/:title/
   job:
     output: true
-    permalink: /job/:name
+    permalink: /job/:title/
 defaults:
   - scope:
       path: ""
