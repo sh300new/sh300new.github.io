@@ -23,6 +23,11 @@ body {
   padding: 0;
 }
 
+/* 상위 카테고리 글자 진하게 */
+.sidebar ul > li > a {
+  font-weight: bold;
+}
+
 .sidebar ul li {
   margin: 10px 0;
 }
@@ -32,6 +37,12 @@ body {
   text-decoration: none;
 }
 
+/* 하위 카테고리 들여쓰기 */
+.sidebar ul ul {
+  padding-left: 20px; /* 공백 두 개에 해당하는 들여쓰기 */
+}
+
+/* 드롭다운 초기 상태 */
 .dropdown {
   display: none;
   list-style-type: none;
