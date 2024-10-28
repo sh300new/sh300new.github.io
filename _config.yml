@@ -1,7 +1,27 @@
-title: Seungho's homepage
-description: Devops 엔지니어 최승호의 기술블로그
-
-include:
-  - project
-  - tech
-  - job
+theme: jekyll-theme-minimal
+collections:
+  project:
+    output: true
+    permalink: /project/:name
+  tech:
+    output: true
+    permalink: /tech/:name
+  job:
+    output: true
+    permalink: /job/:name
+defaults:
+  - scope:
+      path: ""
+      type: "project"
+    values:
+      layout: default
+  - scope:
+      path: ""
+      type: "tech"
+    values:
+      layout: default
+  - scope:
+      path: ""
+      type: "job"
+    values:
+      layout: default
