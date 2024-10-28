@@ -46,7 +46,8 @@ body {
 }
 
 .content {
-  margin-left: 320px; /* 사이드바 넓이보다 약간 더 여유를 줌 */
+  margin-left: 340px; /* 사이드바 넓이보다 약간 더 여유를 줌 */
+  padding-left: 20px; /* 왼쪽 패딩을 추가 */
   padding-top: 20px;
-  width: calc(100% - 320px); /* 전체 너비에서 사이드바와 여백을 뺌 */
+  width: calc(100% - 360px); /* 전체 너비에서 사이드바와 여백을 뺌 */
 }
