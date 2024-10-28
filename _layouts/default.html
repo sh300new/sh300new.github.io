@@ -12,11 +12,13 @@
     {{ content }}
   </div>
 
-  <script>
+<script>
     function toggleSubcategories(id) {
+      console.log("Toggle function called for:", id); // 콘솔 확인용 로그 추가
       var dropdown = document.getElementById(id);
       dropdown.style.display = dropdown.style.display === "none" ? "block" : "none";
     }
-  </script>
+</script>
+
 </body>
 </html>
