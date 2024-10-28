@@ -1,0 +1,26 @@
+<div class="sidebar">
+  <h2>Categories</h2>
+  <ul>
+    {% for category in site.data.categories %}
+      <li>
+        <a href="#">{{ category.name }}</a>
+        {% if category.subcategories %}
+          <ul>
+            {% for subcategory in category.subcategories %}
+              <li>
+                <a href="#">{{ subcategory.name }}</a>
+                {% if subcategory.sub_subcategories %}
+                  <ul>
+                    {% for sub_subcategory in subcategory.sub_subcategories %}
+                      <li><a href="#">{{ sub_subcategory.name }}</a></li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</div>
