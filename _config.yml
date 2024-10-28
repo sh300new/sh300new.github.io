@@ -25,3 +25,5 @@ defaults:
       type: "job"
     values:
       layout: default
+plugins:
+  - jekyll-last-modified-at
