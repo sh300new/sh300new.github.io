@@ -5,8 +5,7 @@
     <li>
       <a href="javascript:void(0)" onclick="toggleSubcategories('project')">프로젝트</a>
       <ul id="project" style="display: none;">
-        {% assign project_files = site.pages | where_exp: "page", "page.path contains '/project/'" %}
-        {% for page in project_files %}
+        {% for page in site.project %}
           <li><a href="{{ page.url }}">{{ page.title }}</a></li>
         {% endfor %}
       </ul>
@@ -16,8 +15,7 @@
     <li>
       <a href="javascript:void(0)" onclick="toggleSubcategories('tech')">기술 고민</a>
       <ul id="tech" style="display: none;">
-        {% assign tech_files = site.pages | where_exp: "page", "page.path contains '/tech/'" %}
-        {% for page in tech_files %}
+        {% for page in site.tech %}
           <li><a href="{{ page.url }}">{{ page.title }}</a></li>
         {% endfor %}
       </ul>
@@ -27,8 +25,7 @@
     <li>
       <a href="javascript:void(0)" onclick="toggleSubcategories('job')">잡 고민</a>
       <ul id="job" style="display: none;">
-        {% assign job_files = site.pages | where_exp: "page", "page.path contains '/job/'" %}
-        {% for page in job_files %}
+        {% for page in site.job %}
           <li><a href="{{ page.url }}">{{ page.title }}</a></li>
         {% endfor %}
       </ul>
