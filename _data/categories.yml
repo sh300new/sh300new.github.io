@@ -1,10 +1,15 @@
-- name: Category1
+- name: 프로젝트
   subcategories:
-    - name: Subcategory1-1
+    - name: 오피스 인프라 마이그레이션
       sub_subcategories:
-        - name: Subcategory1-1-1
-        - name: Subcategory1-1-2
-    - name: Subcategory1-2
-- name: Category2
+        - name: 세부 작업1
+        - name: 세부 작업2
+    - name: 다른 프로젝트
+- name: 기술 고민
   subcategories:
-    - name: Subcategory2-1
+    - name: 서버 관리
+    - name: 네트워크 최적화
+- name: 잡 고민
+  subcategories:
+    - name: 커리어 패스
+    - name: 면접 준비
