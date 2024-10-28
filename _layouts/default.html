@@ -7,41 +7,13 @@
   <link rel="stylesheet" href="{{ "/assets/styles.css" | relative_url }}">
 </head>
 <body>
-  <div class="sidebar">
-    <h2>카테고리</h2>
-    <ul>
-      <li>
-        <a href="javascript:void(0);" onclick="toggleDropdown('project')">프로젝트</a>
-        <ul id="project" class="dropdown">
-          {% for post in site.project %}
-            <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
-          {% endfor %}
-        </ul>
-      </li>
-      <li>
-        <a href="javascript:void(0);" onclick="toggleDropdown('tech')">기술 고민</a>
-        <ul id="tech" class="dropdown">
-          {% for post in site.tech %}
-            <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
-          {% endfor %}
-        </ul>
-      </li>
-      <li>
-        <a href="javascript:void(0);" onclick="toggleDropdown('job')">잡 고민</a>
-        <ul id="job" class="dropdown">
-          {% for post in site.job %}
-            <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
-          {% endfor %}
-        </ul>
-      </li>
-    </ul>
-  </div>
+  {% include sidebar.html %} <!-- 사이드바를 포함합니다. -->
   <div class="content">
     {{ content }}
   </div>
 
   <script>
-    function toggleDropdown(id) {
+    function toggleSubcategories(id) {
       var dropdown = document.getElementById(id);
       dropdown.style.display = dropdown.style.display === "none" ? "block" : "none";
     }
