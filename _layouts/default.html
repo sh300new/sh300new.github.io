@@ -48,11 +48,28 @@
     {{ content }}
   </div>
 
-  <script>
-    function toggleSubcategories(categoryId) {
-      var element = document.getElementById(categoryId);
-      element.style.display = (element.style.display === 'none') ? 'block' : 'none';
+<script>
+  // 페이지 로드 시 URL 파라미터에 따라 하위 항목 표시
+  document.addEventListener("DOMContentLoaded", function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const category = urlParams.get("category");
+    if (category) {
+      toggleSubcategories(category); // 파라미터가 있으면 해당 카테고리 열기
     }
-  </script>
+  });
+
+  // 카테고리를 클릭하면 해당 파라미터를 추가하여 이동
+  function toggleSubcategories(categoryId) {
+    var element = document.getElementById(categoryId);
+    element.style.display = (element.style.display === 'none') ? 'block' : 'none';
+  }
+
+  // 링크에 파라미터 추가
+  function navigateTo(category, path) {
+    const url = path + "?category=" + category;
+    window.location.href = url;
+  }
+</script>
+
 </body>
 </html>
