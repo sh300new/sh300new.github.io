@@ -36,7 +36,7 @@ body {
 
 /* 하위 카테고리 들여쓰기 */
 .sidebar > ul > li > ul {
-  padding-left: 20px; /* 공백 두 개에 해당하는 들여쓰기 */
+  padding-left: 10px; /* 공백 두 개에 해당하는 들여쓰기 */
 }
 
 .dropdown {
