@@ -2,7 +2,9 @@ title: Seungho's homepage
 description: Devops 엔지니어 최승호의 기술블로그
 
 include:
-  - .html
+  - project
+  - tech
+  - job
 
 collections:
   project:
