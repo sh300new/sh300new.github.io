@@ -2,5 +2,9 @@ title: Seungho's homepage
 description: Devops 엔지니어 최승호의 기술블로그
 
 collections:
-  pages:
+  project:
+    output: true
+  tech:
+    output: true
+  job:
     output: true
