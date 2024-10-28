@@ -5,9 +5,9 @@
     <li>
       <a href="javascript:void(0)" onclick="toggleSubcategories('project')">프로젝트</a>
       <ul id="project" style="display: none;">
-        {% assign project_files = site.static_files | where_exp: "file", "file.path contains '/project/'" %}
-        {% for file in project_files %}
-          <li><a href="javascript:void(0)" onclick="navigateTo('project', '{{ file.path | relative_url }}')">{{ file.name | remove: '.html' }}</a></li>
+        {% assign project_files = site.pages | where_exp: "page", "page.path contains '/project/'" %}
+        {% for page in project_files %}
+          <li><a href="{{ page.url }}">{{ page.title }}</a></li>
         {% endfor %}
       </ul>
     </li>
@@ -16,9 +16,9 @@
     <li>
       <a href="javascript:void(0)" onclick="toggleSubcategories('tech')">기술 고민</a>
       <ul id="tech" style="display: none;">
-        {% assign tech_files = site.static_files | where_exp: "file", "file.path contains '/tech/'" %}
-        {% for file in tech_files %}
-          <li><a href="javascript:void(0)" onclick="navigateTo('tech', '{{ file.path | relative_url }}')">{{ file.name | remove: '.html' }}</a></li>
+        {% assign tech_files = site.pages | where_exp: "page", "page.path contains '/tech/'" %}
+        {% for page in tech_files %}
+          <li><a href="{{ page.url }}">{{ page.title }}</a></li>
         {% endfor %}
       </ul>
     </li>
@@ -27,9 +27,9 @@
     <li>
       <a href="javascript:void(0)" onclick="toggleSubcategories('job')">잡 고민</a>
       <ul id="job" style="display: none;">
-        {% assign job_files = site.static_files | where_exp: "file", "file.path contains '/job/'" %}
-        {% for file in job_files %}
-          <li><a href="javascript:void(0)" onclick="navigateTo('job', '{{ file.path | relative_url }}')">{{ file.name | remove: '.html' }}</a></li>
+        {% assign job_files = site.pages | where_exp: "page", "page.path contains '/job/'" %}
+        {% for page in job_files %}
+          <li><a href="{{ page.url }}">{{ page.title }}</a></li>
         {% endfor %}
       </ul>
     </li>
