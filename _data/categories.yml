@@ -1,0 +1,10 @@
+- name: Category1
+  subcategories:
+    - name: Subcategory1-1
+      sub_subcategories:
+        - name: Subcategory1-1-1
+        - name: Subcategory1-1-2
+    - name: Subcategory1-2
+- name: Category2
+  subcategories:
+    - name: Subcategory2-1
