@@ -7,7 +7,7 @@
       <ul id="project" style="display: none;">
         {% assign project_files = site.static_files | where_exp: "file", "file.path contains '/project/'" %}
         {% for file in project_files %}
-          <li><a href="{{ file.path | relative_url }}">{{ file.name | remove: '.html' }}</a></li>
+          <li><a href="javascript:void(0)" onclick="navigateTo('project', '{{ file.path | relative_url }}')">{{ file.name | remove: '.html' }}</a></li>
         {% endfor %}
       </ul>
     </li>
@@ -18,7 +18,7 @@
       <ul id="tech" style="display: none;">
         {% assign tech_files = site.static_files | where_exp: "file", "file.path contains '/tech/'" %}
         {% for file in tech_files %}
-          <li><a href="{{ file.path | relative_url }}">{{ file.name | remove: '.html' }}</a></li>
+          <li><a href="javascript:void(0)" onclick="navigateTo('tech', '{{ file.path | relative_url }}')">{{ file.name | remove: '.html' }}</a></li>
         {% endfor %}
       </ul>
     </li>
@@ -29,16 +29,9 @@
       <ul id="job" style="display: none;">
         {% assign job_files = site.static_files | where_exp: "file", "file.path contains '/job/'" %}
         {% for file in job_files %}
-          <li><a href="{{ file.path | relative_url }}">{{ file.name | remove: '.html' }}</a></li>
+          <li><a href="javascript:void(0)" onclick="navigateTo('job', '{{ file.path | relative_url }}')">{{ file.name | remove: '.html' }}</a></li>
         {% endfor %}
       </ul>
     </li>
   </ul>
 </div>
-
-<script>
-  function toggleSubcategories(categoryId) {
-    var element = document.getElementById(categoryId);
-    element.style.display = (element.style.display === 'none') ? 'block' : 'none';
-  }
-</script>
