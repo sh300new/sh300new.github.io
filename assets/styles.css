@@ -6,7 +6,7 @@ body {
 }
 
 .sidebar {
-  width: 200px;
+  width: 400px;
   background-color: #f4f4f4;
   padding: 20px;
   position: fixed;
@@ -47,6 +47,7 @@ body {
 
 .content {
   margin-left: 220px;
+  padding-left: 20px; /* 왼쪽 패딩을 추가 */
   padding: 20px;
   width: 100%;
 }
