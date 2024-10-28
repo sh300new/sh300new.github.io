@@ -1,31 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ page.title }} - {{ site.title }}</title>
+  <title>{{ page.title }}</title>
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
-    <p>{{ site.description }}</p>
-  </header>
+  <div class="sidebar">
+    <h2>카테고리</h2>
+    <ul>
+      <!-- 프로젝트 카테고리 -->
+      <li>
+        <a href="javascript:void(0)" onclick="toggleSubcategories('project')">프로젝트</a>
+        <ul id="project" style="display: none;">
+          {% assign project_files = site.static_files | where_exp: "file", "file.path contains '/project/'" %}
+          {% for file in project_files %}
+            <li><a href="{{ file.path | relative_url }}">{{ file.name | remove: '.html' }}</a></li>
+          {% endfor %}
+        </ul>
+      </li>
 
-  <!-- Sidebar -->
-  <aside>
-    {% include sidebar.html %}
-  </aside>
+      <!-- 기술 고민 카테고리 -->
+      <li>
+        <a href="javascript:void(0)" onclick="toggleSubcategories('tech')">기술 고민</a>
+        <ul id="tech" style="display: none;">
+          {% assign tech_files = site.static_files | where_exp: "file", "file.path contains '/tech/'" %}
+          {% for file in tech_files %}
+            <li><a href="{{ file.path | relative_url }}">{{ file.name | remove: '.html' }}</a></li>
+          {% endfor %}
+        </ul>
+      </li>
 
-  <!-- Main Content -->
-  <main>
+      <!-- 잡 고민 카테고리 -->
+      <li>
+        <a href="javascript:void(0)" onclick="toggleSubcategories('job')">잡 고민</a>
+        <ul id="job" style="display: none;">
+          {% assign job_files = site.static_files | where_exp: "file", "file.path contains '/job/'" %}
+          {% for file in job_files %}
+            <li><a href="{{ file.path | relative_url }}">{{ file.name | remove: '.html' }}</a></li>
+          {% endfor %}
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="content">
     {{ content }}
-  </main>
+  </div>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}. All rights reserved.</p>
-  </footer>
+  <script>
+    function toggleSubcategories(categoryId) {
+      var element = document.getElementById(categoryId);
+      element.style.display = (element.style.display === 'none') ? 'block' : 'none';
+    }
+  </script>
 </body>
 </html>
