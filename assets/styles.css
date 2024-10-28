@@ -32,6 +32,12 @@ body {
   text-decoration: none;
 }
 
+.dropdown {
+  display: none;
+  list-style-type: none;
+  padding-left: 15px;
+}
+
 .content {
   margin-left: 220px;
   padding: 20px;
