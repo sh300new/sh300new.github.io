@@ -28,15 +28,22 @@ body {
   font-weight: bold;
   color: #333;
   text-decoration: none;
+  font-size: 1em; /* 기본 폰트 크기 */
 }
 
 .sidebar ul li {
   margin: 10px 0;
 }
 
-/* 하위 카테고리 들여쓰기 */
+/* 하위 카테고리 스타일 조정 */
 .sidebar > ul > li > ul {
   padding-left: 10px; /* 공백 두 개에 해당하는 들여쓰기 */
+}
+
+.sidebar > ul > li > ul li a {
+  font-size: 0.9em; /* 상위 카테고리보다 2만 작게 설정 */
+  color: #333; /* 파란색이 아닌 일반 텍스트 색 */
+  text-decoration: none; /* 밑줄 제거 */
 }
 
 .dropdown {
