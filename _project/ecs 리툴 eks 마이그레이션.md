@@ -91,7 +91,7 @@ k8s 1.31 버전 기준 eksctl 설치 후 자동으로 설치되지 않는 것들
       'eksctl utils associate-iam-oidc-provider --region=ap-northeast-2 --cluster=staging-cluster --approve'
    - 좀전에 만든 aws-loadbalancer-controller를 위한 서비스 계정 생성 및 연결
 
-현실적으로 이걸 완벽하게 따라하는 것도 좋지만 한쪽에 k9s로 파드 목록을 띄워놓고 빨간 애들은 d를 통해 로그를 보면서 해결하는 것이 가장 좋았다.
+현실적으로 이걸 완벽하게 따라하는 것도 좋지만 한쪽에 k9s로 파드 목록을 띄워놓고 빨간 애들은 d를 통해 로그를 보면서 해결하는 것이 가장 좋을 것 같다.
 
 ---
 
