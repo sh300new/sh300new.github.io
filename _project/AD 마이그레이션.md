@@ -8,6 +8,7 @@ date: 2023-10-29 # 최초 작성일 수동 입력
 ---
 
 작성일: {{ page.date | date: '%Y-%m-%d' }}
+마지막 수정: {% last_modified_at %}
 
 ---
 
