@@ -76,6 +76,8 @@ body {
   border-radius: 4px;
   overflow-x: auto;
   display: none; /* 기본적으로 숨김 */
+  margin-right: 20px; /* 오른쪽 마진을 유지 */
+  margin-left: 0; /* 왼쪽 여백을 없애서 왼쪽에 붙도록 설정 */
 }
 
 .copy-btn {
@@ -91,4 +93,3 @@ body {
   font-size: 12px;
   display: none; /* 기본적으로 숨김 */
 }
-
