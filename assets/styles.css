@@ -73,7 +73,7 @@ body {
 
 .code-container {
   position: relative;
-  max-width: 1500px; /* 코드 블럭이 너무 넓어지지 않도록 제한 */
+  max-width: 1400px; /* 코드 블럭이 너무 넓어지지 않도록 제한 */
   margin-left: 0; /* 왼쪽에 정렬 */
 }
 
