@@ -52,7 +52,6 @@ body {
   width: calc(100% - 360px); /* 전체 너비에서 사이드바와 여백을 뺌 */
 }
 
-/* assets/styles.css */
 .toggle-btn {
   background-color: #007bff;
   color: white;
@@ -61,12 +60,14 @@ body {
   cursor: pointer;
   border-radius: 4px;
   margin-bottom: 10px;
+  display: block; /* 버튼을 왼쪽 정렬 */
+  text-align: left; /* 텍스트를 왼쪽 정렬 */
 }
 
 .code-container {
   position: relative;
   max-width: 800px; /* 코드 블럭이 너무 넓어지지 않도록 제한 */
-  margin: 0 auto; /* 화면 중앙에 배치 */
+  margin-left: 0; /* 왼쪽에 정렬 */
 }
 
 .code-block {

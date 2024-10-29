@@ -33,7 +33,7 @@ ecs는 너무 제약이 많기 때문에 보다 유연한 시스템 구성을 �
   <button onclick="toggleCode()" class="toggle-btn">delete all vpc resource.sh</button>
   <pre id="code-block" class="code-block">
     <code>
-VPC_ID="vpc-054b2b4f9d005926c"
+VPC_ID={your-vpc-id}
 
 # 1. 인터넷 게이트웨이 및 NAT 게이트웨이 해제 및 삭제
 IGW_ID=$(aws ec2 describe-internet-gateways --filters "Name=attachment.vpc-id,Values=$VPC_ID" --query "InternetGateways[0].InternetGatewayId" --output text)
