@@ -5,7 +5,8 @@
     <li>
       <a href="javascript:void(0)" onclick="toggleSubcategories('project')">프로젝트</a>
       <ul id="project" style="display: none;">
-        {% for page in site.project %}
+        {% assign sorted_project_pages = site.project | sort: 'date' | reverse %}
+        {% for page in sorted_project_pages %}
           <li><a href="{{ page.url }}">{{ page.title }}</a></li>
         {% endfor %}
       </ul>
@@ -15,7 +16,8 @@
     <li>
       <a href="javascript:void(0)" onclick="toggleSubcategories('tech')">기술 고민</a>
       <ul id="tech" style="display: none;">
-        {% for page in site.tech %}
+        {% assign sorted_tech_pages = site.tech | sort: 'date' | reverse %}
+        {% for page in sorted_tech_pages %}
           <li><a href="{{ page.url }}">{{ page.title }}</a></li>
         {% endfor %}
       </ul>
@@ -25,7 +27,8 @@
     <li>
       <a href="javascript:void(0)" onclick="toggleSubcategories('job')">잡 고민</a>
       <ul id="job" style="display: none;">
-        {% for page in site.job %}
+        {% assign sorted_job_pages = site.job | sort: 'date' | reverse %}
+        {% for page in sorted_job_pages %}
           <li><a href="{{ page.url }}">{{ page.title }}</a></li>
         {% endfor %}
       </ul>
