@@ -91,6 +91,5 @@ aws ec2 delete-vpc --vpc-id $VPC_ID
 
 ## 결론
 
-F
 ---
 
