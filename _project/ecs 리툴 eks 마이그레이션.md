@@ -26,14 +26,13 @@ ecs는 너무 제약이 많기 때문에 보다 유연한 시스템 구성을 �
    - eksctl로 생성하되 언제나 그렇듯 수도 없이 부시고 만들고를 반복해야 하니 최대한 yaml 파일을 통해 만들려고 했다.
    - 또한 막상 생성해보니 노드그룹에서 노드의 ip를 지정할 수 없어서 최대한 작은 서브넷 ip 대역이 필요했고, 이를 위해 서브넷 ip 대역을 지정하고 싶었는데 그게 안돼서 vpc는 미리 만들었다.
    - vpc를 한번에 생성하면 좋지만 나같이 누군가는 실수할 수도 있기에 vpc와 관련된 리소스를 한번에 지울 수 있는 코드를 공유한다.
-
 ## delete all vpc resource.sh
 
 <link rel="stylesheet" href="/assets/styles.css">
 
 <div class="code-container">
   <button onclick="toggleCode()" class="toggle-btn">delete all vpc resource.sh</button>
-  <pre id="code-block" class="code-block" style="display: none;">
+  <pre id="code-block" class="code-block">
     <code>
 VPC_ID="vpc-054b2b4f9d005926c"
 
@@ -77,10 +76,11 @@ done
 aws ec2 delete-vpc --vpc-id $VPC_ID
     </code>
   </pre>
-  <button onclick="copyCode()" class="copy-btn" style="display: none; position: absolute; top: 5px; right: 5px;">Copy</button>
+  <button onclick="copyCode()" class="copy-btn">Copy</button>
 </div>
 
 <script src="/assets/scripts.js"></script>
+
 
 
 **2. 컨피그 마이그레이션**  

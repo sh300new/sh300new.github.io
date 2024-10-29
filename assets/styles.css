@@ -60,6 +60,13 @@ body {
   border: none;
   cursor: pointer;
   border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.code-container {
+  position: relative;
+  max-width: 800px; /* 코드 블럭이 너무 넓어지지 않도록 제한 */
+  margin: 0 auto; /* 화면 중앙에 배치 */
 }
 
 .code-block {
@@ -68,14 +75,20 @@ body {
   border: 1px solid #ddd;
   border-radius: 4px;
   overflow-x: auto;
-  position: relative;
+  display: none; /* 기본적으로 숨김 */
 }
 
 .copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
   background-color: #007bff;
   color: white;
   padding: 4px 8px;
   border: none;
   cursor: pointer;
   border-radius: 4px;
+  font-size: 12px;
+  display: none; /* 기본적으로 숨김 */
 }
+
