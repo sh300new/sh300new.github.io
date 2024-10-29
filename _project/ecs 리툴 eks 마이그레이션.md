@@ -80,6 +80,18 @@ aws ec2 delete-vpc --vpc-id $VPC_ID
 
 <script src="/assets/scripts.js"></script>
 
+**2. eks 생성 후 추가로 설치해줘야 하는 것들**  
+k8s 1.31 버전 기준 eksctl 설치 후 자동으로 설치되지 않는 것들에 대해 추가가 필요하다
+   - ebs-csi driver 설치(DB를 이용해야 하는 경우)
+      'aws eks create-addon --cluster-name <cluster-name> --addon-name aws-ebs-csi-driver --region <region>'
+   - 노드그룹에 IAM 권한 추가(eksctl로 생성되는 iam 권한 중 ec2:createtag 등 일부 권한이 빠져 있어 추가해 줘야함)
+   - VPC를 직접 생성한 경우 k8s가 인식할 수 있도록 태그를 붙여줘야 함
+   - aws-loadbalancer-controller 설치(개인적으로 헬름차트를 통해 설치하는게 편한듯)
+   - 클러스터에 IAM OIDC 제공자가 연결
+      'eksctl utils associate-iam-oidc-provider --region=ap-northeast-2 --cluster=staging-cluster --approve'
+   - 좀전에 만든 aws-loadbalancer-controller를 위한 서비스 계정 생성 및 연결
+
+현실적으로 이걸 완벽하게 따라하는 것도 좋지만 한쪽에 k9s로 파드 목록을 띄워놓고 빨간 애들은 d를 통해 로그를 보면서 해결하는 것이 가장 좋았다.
 
 ---
 
