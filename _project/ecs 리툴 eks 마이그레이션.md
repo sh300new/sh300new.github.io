@@ -32,8 +32,8 @@ ecs는 너무 제약이 많기 때문에 보다 유연한 시스템 구성을 �
 <link rel="stylesheet" href="/assets/styles.css">
 
 <div class="code-container">
-  <button onclick="toggleCode()" class="toggle-btn">delete all vpc resource.sh</button>
-  <pre id="code-block" class="code-block">
+  <button onclick="toggleCode(this)" class="toggle-btn" data-code="code-block-1">delete all vpc resource.sh</button>
+  <pre id="code-block-1" class="code-block">
     <code>
 VPC_ID={your-vpc-id}
 
