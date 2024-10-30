@@ -32,7 +32,7 @@ jobs:
       # Step to update last_modified_at in front matter
       - name: Set Last Modified Date
         run: |
-          for file in $(find _project _tech _job -name '*.md'); do
+          for file in $(find _project _tech _job -name '*.md' -print0 | xargs -0); do
             # Get the last commit date for the file
             last_modified=$(git log -1 --format="%ad" --date=format:"%Y-%m-%d" -- "$file")
             # Add or update the 'last_modified_at' field in the front matter
