@@ -77,7 +77,7 @@ done
 aws ec2 delete-vpc --vpc-id $VPC_ID
     </code>
   </pre>
-  <button onclick="copyCode()" class="copy-btn">Copy</button>
+  <button onclick="copyCode(this)" class="copy-btn" data-copy="code-block-1" style="display: none;">Copy</button>
 </div>
 
 <script src="/assets/scripts.js"></script>
@@ -90,8 +90,8 @@ k8s 1.31 버전 기준 eksctl 설치 후 자동으로 설치되지 않는 것들
 <link rel="stylesheet" href="/assets/styles.css">
 
 <div class="code-container">
-  <button onclick="toggleCode()" class="toggle-btn">노드그룹에 추가해줘야할 권한.json</button>
-  <pre id="code-block" class="code-block">
+  <button onclick="toggleCode(this)" class="toggle-btn" data-code="code-block-2">노드그룹에 추가해줘야할 권한.json</button>
+  <pre id="code-block-2" class="code-block">
     <code>
 {
     "Version": "2012-10-17",
@@ -116,7 +116,7 @@ k8s 1.31 버전 기준 eksctl 설치 후 자동으로 설치되지 않는 것들
 
     </code>
   </pre>
-  <button onclick="copyCode()" class="copy-btn">Copy</button>
+  <button onclick="copyCode(this)" class="copy-btn" data-copy="code-block-2" style="display: none;">Copy</button>
 </div>
 
 <script src="/assets/scripts.js"></script>
