@@ -87,6 +87,39 @@ k8s 1.31 버전 기준 eksctl 설치 후 자동으로 설치되지 않는 것들
    - ebs-csi driver 설치(DB를 이용해야 하는 경우)
       'aws eks create-addon --cluster-name <cluster-name> --addon-name aws-ebs-csi-driver --region <region>'
    - 노드그룹에 IAM 권한 추가(eksctl로 생성되는 iam 권한 중 ec2:createtag 등 일부 권한이 빠져 있어 추가해 줘야함)
+<link rel="stylesheet" href="/assets/styles.css">
+
+<div class="code-container">
+  <button onclick="toggleCode()" class="toggle-btn">노드그룹에 추가해줘야할 권한.json</button>
+  <pre id="code-block" class="code-block">
+    <code>
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:CreateVolume",
+                "ec2:AttachVolume",
+                "ec2:DeleteVolume",
+                "ec2:DescribeVolumes",
+                "ec2:DescribeVolumeStatus",
+                "ec2:DescribeInstances",
+                "ec2:DescribeAvailabilityZones",
+                "ec2:ModifyVolume",
+                "ec2:CreateTags"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+
+    </code>
+  </pre>
+  <button onclick="copyCode()" class="copy-btn">Copy</button>
+</div>
+
+<script src="/assets/scripts.js"></script>
    - VPC를 직접 생성한 경우 k8s가 인식할 수 있도록 태그를 붙여줘야 함
    - aws-loadbalancer-controller 설치(개인적으로 헬름차트를 통해 설치하는게 편한듯)
    - 클러스터에 IAM OIDC 제공자가 연결
