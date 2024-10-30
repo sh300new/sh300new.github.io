@@ -1,6 +1,7 @@
 ---
 title: VDI 마이그레이션
 date: 2023-10-29 # 최초 작성일 수동 입력
+last_modified_at: 2023-10-30 # GitHub Actions로 자동 업데이트
 ---
 
 # VDI 마이그레이션
@@ -8,6 +9,7 @@ date: 2023-10-29 # 최초 작성일 수동 입력
 ---
 
 작성일: {{ page.date | date: '%Y-%m-%d' }}
+마지막 수정: {{ page.last_modified_at | date: '%Y-%m-%d' }}
 
 ---
 

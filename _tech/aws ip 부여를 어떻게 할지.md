@@ -1,6 +1,7 @@
 ---
 title: AWS IP 부여 및 운용을 어떻게 할지?
 date: 2023-10-29
+last_modified_at: 2023-10-30 # GitHub Actions로 자동 업데이트
 ---
 
 # AWS IP 부여 및 운용을 어떻게 할지?
@@ -8,6 +9,7 @@ date: 2023-10-29
 ---
 
 작성일: {{ page.date | date: '%Y-%m-%d' }}
+마지막 수정: {{ page.last_modified_at | date: '%Y-%m-%d' }}
 
 ---
 
