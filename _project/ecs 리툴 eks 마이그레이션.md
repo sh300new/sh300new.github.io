@@ -34,8 +34,7 @@ ecs는 너무 제약이 많기 때문에 보다 유연한 시스템 구성을 �
 <div class="code-container">
   <button onclick="toggleCode(this)" class="toggle-btn" data-code="code-block-1">delete all vpc resource.sh</button>
   <pre id="code-block-1" class="code-block">
-    <code>
-VPC_ID={your-vpc-id}
+    <code>VPC_ID={your-vpc-id}
 
 # 1. 인터넷 게이트웨이 및 NAT 게이트웨이 해제 및 삭제
 IGW_ID=$(aws ec2 describe-internet-gateways --filters "Name=attachment.vpc-id,Values=$VPC_ID" --query "InternetGateways[0].InternetGatewayId" --output text)
@@ -74,8 +73,7 @@ for sg in $SG_IDS; do
 done
 
 # 6. VPC 삭제
-aws ec2 delete-vpc --vpc-id $VPC_ID
-    </code>
+aws ec2 delete-vpc --vpc-id $VPC_ID</code>
   </pre>
   <button onclick="copyCode(this)" class="copy-btn" data-copy="code-block-1" style="display: none;">Copy</button>
 </div>
@@ -92,8 +90,7 @@ k8s 1.31 버전 기준 eksctl 설치 후 자동으로 설치되지 않는 것들
 <div class="code-container">
   <button onclick="toggleCode(this)" class="toggle-btn" data-code="code-block-2">노드그룹에 추가해줘야할 권한.json</button>
   <pre id="code-block-2" class="code-block">
-    <code>
-{
+    <code>{
     "Version": "2012-10-17",
     "Statement": [
         {
@@ -112,9 +109,7 @@ k8s 1.31 버전 기준 eksctl 설치 후 자동으로 설치되지 않는 것들
             "Resource": "*"
         }
     ]
-}
-
-    </code>
+}</code>
   </pre>
   <button onclick="copyCode(this)" class="copy-btn" data-copy="code-block-2" style="display: none;">Copy</button>
 </div>
