@@ -116,6 +116,7 @@ k8s 1.31 버전 기준 eksctl 설치 후 자동으로 설치되지 않는 것들
 
 <script src="/assets/scripts.js"></script>
    - VPC를 직접 생성한 경우 k8s가 인식할 수 있도록 태그를 붙여줘야 함
+     - kubernetes.io/role/elb:1, kubernetes.io/role/internal-elb:1
    - aws-loadbalancer-controller 설치(개인적으로 헬름차트를 통해 설치하는게 편한듯)
    - 클러스터에 IAM OIDC 제공자가 연결
       'eksctl utils associate-iam-oidc-provider --region=ap-northeast-2 --cluster=staging-cluster --approve'
