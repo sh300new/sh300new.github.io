@@ -41,11 +41,11 @@ squares = [x ** 2 for x in range(1, 11) if x % 2 == 0]
 
 ## list comprehension과 zip의 용례
 
-코딩테스트를 해야 할 때면 항상 방문하는 블로그가 있는데 이 사람이 선별해 놓은 문제가 좋아서 자주 푼다.
-https://velog.io/@pppp0722/%EC%BD%94%EB%94%A9%ED%85%8C%EC%8A%A4%ED%8A%B8-%EB%AC%B8%EC%A0%9C-%EC%9C%A0%ED%98%95-%EC%A0%95%EB%A6%AC
+코딩테스트를 해야 할 때면 항상 방문하는 블로그가 있는데 이 사람이 선별해 놓은 문제가 좋아서 자주 푼다.  
+[코딩테스트 공부 velog](https://velog.io/@pppp0722/%EC%BD%94%EB%94%A9%ED%85%8C%EC%8A%A4%ED%8A%B8-%EB%AC%B8%EC%A0%9C-%EC%9C%A0%ED%98%95-%EC%A0%95%EB%A6%AC)
 
-근데 이중에 프로그래머스의 문제 중 단어 변환 문제를 풀고 있었는데
-https://school.programmers.co.kr/learn/courses/30/lessons/43163
+근데 이중에 프로그래머스의 문제 중 단어 변환 문제를 풀고 있었는데  
+[프로그래머스 - 단어 변환](https://school.programmers.co.kr/learn/courses/30/lessons/43163)
 
 두개의 리스트에 있는 단어를 비교하여 서로 다른 문자열이 한개만 있는 단어들을 찾는 부분을 구현해야 했다.
 한번 구현해 보고 챗지피티에게 더 나은 방법이 없나 물어봤더니 아래와 같은 충격적인 코드를 줬다. 
