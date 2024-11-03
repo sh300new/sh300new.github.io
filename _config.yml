@@ -25,4 +25,5 @@ defaults:
       type: "job"
     values:
       layout: default
+markdown: kramdown
 highlighter: rouge
