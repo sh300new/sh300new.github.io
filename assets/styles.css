@@ -112,7 +112,6 @@ pre.code, pre.highlight {
     overflow-x: auto;
     font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
     font-size: 14px;
-    margin-right: 100px; /* 코드 블록 오른쪽에 여백 추가 */
 }
 
 /* 코드 하이라이팅 색상 */
