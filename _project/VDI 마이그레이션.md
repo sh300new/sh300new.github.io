@@ -48,8 +48,11 @@ last_modified_at: 2023-10-30 # GitHub Actions로 자동 업데이트
 
 ## 운영 단계
 
-아직 운영 경험은 없다.
-
+**1. yum 접근을 위한 프록시 설정 추가**
+  - 운영 중 일부 유저의 요청에 의해 아마존 레포에 대한 통신 설정을 하였다. 이미 아마존쪽 url은 모두 열려 있기에 yum에 간단한 설정을 추가하는 것만으로 레포 이용이 가능해졌다.
+```bash
+echo -e "proxy=http://{proxy-ip}:3128\nsslverify=false" | sudo tee -a /etc/yum.conf
+```
 ---
 
 ## 결론
