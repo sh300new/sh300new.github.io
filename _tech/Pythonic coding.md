@@ -1,6 +1,6 @@
 ---
 title: Pythonic coding
-date: 2023-11-03
+date: 2024-11-03
 last_modified_at: 2023-10-30 # GitHub Actions로 자동 업데이트
 ---
 

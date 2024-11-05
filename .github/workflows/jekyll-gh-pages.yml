@@ -38,20 +38,37 @@ jobs:
             # Get the last commit date for the file (last modified date)
             last_modified=$(git log -1 --format="%ad" --date=format:"%Y-%m-%d" -- "$file")
 
+            # Only update the file if dates have changed
+            should_update=false
+
             # Add or update the 'date' field in the front matter
             if grep -q '^date:' "$file"; then
-              sed -i "s/^date:.*/date: $creation_date/" "$file"
+              if ! grep -q "^date: $creation_date" "$file"; then
+                sed -i "s/^date:.*/date: $creation_date/" "$file"
+                should_update=true
+              fi
             else
               sed -i "1i date: $creation_date" "$file"
+              should_update=true
             fi
 
             # Add or update the 'last_modified_at' field in the front matter
             if grep -q '^last_modified_at:' "$file"; then
-              sed -i "s/^last_modified_at:.*/last_modified_at: $last_modified/" "$file"
+              if ! grep -q "^last_modified_at: $last_modified" "$file"; then
+                sed -i "s/^last_modified_at:.*/last_modified_at: $last_modified/" "$file"
+                should_update=true
+              fi
             else
               sed -i "1i last_modified_at: $last_modified" "$file"
+              should_update=true
+            fi
+
+            # Stage the file if it was updated
+            if [ "$should_update" = true ]; then
+              git add "$file"
             fi
           done
+      
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
