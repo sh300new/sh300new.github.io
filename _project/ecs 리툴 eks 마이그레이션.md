@@ -126,6 +126,89 @@ k8s 1.31 버전 기준 eksctl 설치 후 자동으로 설치되지 않는 것들
 
 현실적으로 이걸 완벽하게 따라하는 것도 좋지만 한쪽에 k9s로 파드 목록을 띄워놓고 빨간 애들은 d를 통해 로그를 보면서 해결하는 것이 가장 좋을 것 같다.
 
+**3. 테라폼 코드화**  
+자세한 내용은 [테라폼 코드 디자인](https://sh300new.github.io/tech/%ED%85%8C%EB%9D%BC%ED%8F%BC_%EC%BD%94%EB%93%9C_%EB%94%94%EC%9E%90%EC%9D%B8/)에 넣고, 지속적으로 업데이트할 예정이니 여기선 구축 중 발생했던 이슈들에 대해 작성해보려고 한다.
+# 1. node group join 문제
+언제나 생각지도 못한 곳에서 허들을 만나지만, 정말 생각지도 못했다. managed node group을 만들기 위해 정말 많은 것들을 해야 했다.
+    - eks cluster와 node group의 sg을 별개 resource로 만들고, eks 클러스터를 eksctl로 만들때 기본적으로 생성되는 sg는 cluster sg -> node group과 node group -> cluster sg 모든 통신을 허용해야 한다. 또한 스스로에 대한 통신도 허용해야 하는데, 이건 한 리소스로 구현이 어려워서, 먼저 sg를 선언한 후 rule을 선언해야 한다.
+<div class="code-container">
+  <button onclick="toggleCode(this)" class="toggle-btn" data-code="code-block-3">sg 생성 관련 tf 파일</button>
+  <pre id="code-block-3" class="code-block">
+    <code>
+# 클러스터 보안 그룹 생성
+resource "aws_security_group" "eks_cluster_sg" {
+  vpc_id      = var.vpc_id
+  description = "EKS Cluster Security Group allowing all traffic from node group SG and itself"
+
+  # 외부로 나가는 모든 트래픽 허용
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "${var.cluster_name}-cluster-sg"
+  }
+}
+
+# 클러스터 보안 그룹에 자기 자신에서 오는 트래픽 허용
+resource "aws_security_group_rule" "cluster_self_ingress" {
+  type              = "ingress"
+  from_port         = 0
+  to_port           = 0
+  protocol          = "-1"
+  security_group_id = aws_security_group.eks_cluster_sg.id
+  source_security_group_id = aws_security_group.eks_cluster_sg.id  # 자기 자신 참조
+}
+
+# 클러스터 보안 그룹에 노드 그룹 보안 그룹에서 오는 트래픽 허용
+resource "aws_security_group_rule" "cluster_node_group_ingress" {
+  type              = "ingress"
+  from_port         = 0
+  to_port           = 0
+  protocol          = "-1"
+  security_group_id = aws_security_group.eks_cluster_sg.id
+  source_security_group_id = var.node_group_sg_id  # 노드 그룹 보안 그룹 참조
+}
+</code>
+  </pre>
+  <button onclick="copyCode(this)" class="copy-btn" data-copy="code-block-3" style="display: none;">Copy</button>
+</div>
+
+<script src="/assets/scripts.js"></script>
+# 2. 네트워크 확인
+이거는 내 개인적인 실수이지만 다른 사람들도 충분히 할만하여 공유한다. 보통은 vpc를 구성할때 2개의 az에 만들텐데, public은 igw를 private은 nat gw를 라우팅 테이블로 연결해야 한다. 그때 챗지피티가 시키는대로만 만들면 하나의 서브넷에만 라우팅 테이블이 연결된다.
+<div class="code-container">
+  <button onclick="toggleCode(this)" class="toggle-btn" data-code="code-block-4">vpc 라우팅 연결 관련 tf 파일</button>
+  <pre id="code-block-4" class="code-block">
+    <code>
+# 퍼블릭 서브넷 라우팅 테이블 연결
+resource "aws_route_table_association" "public" {
+  count          = length(var.network_names) * 2 # 이 count에 * 2를 붙여줘야 한다
+  subnet_id      = aws_subnet.public[count.index].id
+  route_table_id = aws_route_table.public[floor(count.index / 2)].id
+}
+
+# 프라이빗 서브넷 라우팅 테이블 연결
+resource "aws_route_table_association" "private" {
+  count          = length(var.network_names) * 2 # 이 count에 * 2를 붙여줘야 한다
+  subnet_id      = aws_subnet.private[count.index].id
+  route_table_id = aws_route_table.private[floor(count.index / 2)].id
+}
+</code>
+  </pre>
+  <button onclick="copyCode(this)" class="copy-btn" data-copy="code-block-4" style="display: none;">Copy</button>
+</div>
+
+<script src="/assets/scripts.js"></script>
+
+# 3. 노드 내의 user data 확인
+eksctl로 node group을 생성하면 어떤 방법인지 각 노드에 user group을 잘 넣어주는 것 같다. 그러나 테라폼으로 만들면, 이게 안돼서 각 노드에 user-data를 직접 넣어줘야 한다. 여기서 user-data란, 노드 그룹이 노드들을 클러스터에 조인시키려면 노드가 클러스터 endpoint url과 인증서 정보를 가지고 있어야 가능하기 때문에, 그 정보를 넣어주는 것이다.
+
+
+
 ---
 
 ## 운영 단계
