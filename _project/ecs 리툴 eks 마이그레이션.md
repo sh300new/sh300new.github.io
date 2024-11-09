@@ -74,7 +74,8 @@ for sg in $SG_IDS; do
 done
 
 # 6. VPC 삭제
-aws ec2 delete-vpc --vpc-id $VPC_ID</code>
+aws ec2 delete-vpc --vpc-id $VPC_ID
+</code>
   </pre>
   <button onclick="copyCode(this)" class="copy-btn" data-copy="code-block-1" style="display: none;">Copy</button>
 </div>

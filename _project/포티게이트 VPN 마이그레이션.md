@@ -64,6 +64,10 @@ last_modified_at: 2023-10-30 # GitHub Actions로 자동 업데이트
      재부팅해야만 연결이 된다.
    - 포티토큰을 이용한 내부 MFA는 문제가 없지만 외부 인증은 오류가 발생한다.  
    - 클라이언트 버전을 올리고 낮추어도 해결되지 않았다.
+   - 드디어 방법을 찾았다, 역으로 생각해서 네트워크를 재부팅 한것과 같이 초기화하면 되겠다는 생각을 했다.
+   - sudo networksetup -setnetworkserviceenabled Wi-Fi off
+   - sudo pkill -f forti
+   - sudo networksetup -setnetworkserviceenalbed Wi-Fi on
 
 ---
 
