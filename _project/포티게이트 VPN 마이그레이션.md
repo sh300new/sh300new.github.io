@@ -60,15 +60,24 @@ last_modified_at: 2023-10-30 # GitHub Actions로 자동 업데이트
 
 
 2. **포티클라이언트 SSO 연결 문제**  
-   - 포티클라이언트가 지정된 시간(기본 8시간)이 지난 후 재연결 시 연결되지 않으며  
-     재부팅해야만 연결이 된다.
+   - 포티클라이언트가 지정된 시간(기본 8시간)이 지난 후 재연결 시 연결되지 않으며 재부팅해야만 연결이 된다.
    - 포티토큰을 이용한 내부 MFA는 문제가 없지만 외부 인증은 오류가 발생한다.  
    - 클라이언트 버전을 올리고 낮추어도 해결되지 않았다.
    - 드디어 방법을 찾았다, 역으로 생각해서 네트워크를 재부팅 한것과 같이 초기화하면 되겠다는 생각을 했다.
-   - sudo networksetup -setnetworkserviceenabled Wi-Fi off
-   - sudo pkill -f forti
-   - sudo networksetup -setnetworkserviceenalbed Wi-Fi on
 
+
+3. **SSO 인증 상태로 개인별 고정 IP 부여하기 **
+   - 보안팀의 요구사항으로 개인별 고정 ip를 부여해야 했다.
+   - 기존 포티게이트 사용 방식으로는 간단히 부여할 수 있지만 SSO 인증 상태로는 어려움이 있었는데, 포티게이트는 SSO 인증으로 사용자를 만들면 기본적으로 '그룹'단위로 식별하기 때문이다. 그래서 애초에 SSO 인증으로 만들 수 있는 사용자 객체는 그룹밖에 없다.
+   - SSO 인증은 상호간에 클레임이라는 방식으로 유저의 데이터를 주고받는다. 그래서 이 부분을 중점적으로 살펴봤다.
+   - 클레임을 통해 그룹이 아닌 user의 계정을 추가해줬고, 이걸 통해 포티게이트가 인식하도록 했다.
+   - 그 후, 개인마다 사용자 그룹을 만들어줬고, SSl-VPN 포털도 개인마다 만든 후 VPN 설정에 IP를 한개씩 부여하여 개인별로 고정 IP를 가질 수 있게 구성했다.
+
+```bash
+sudo networksetup -setnetworkserviceenabled Wi-Fi off
+sudo pkill -f forti
+sudo networksetup -setnetworkserviceenalbed Wi-Fi on
+```
 ---
 
 ## 결론
