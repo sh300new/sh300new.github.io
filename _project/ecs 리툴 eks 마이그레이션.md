@@ -129,7 +129,7 @@ k8s 1.31 버전 기준 eksctl 설치 후 자동으로 설치되지 않는 것들
 
 **3. 테라폼 코드화**  
 자세한 내용은 [테라폼 코드 디자인](https://sh300new.github.io/tech/%ED%85%8C%EB%9D%BC%ED%8F%BC_%EC%BD%94%EB%93%9C_%EB%94%94%EC%9E%90%EC%9D%B8/)에 넣고, 지속적으로 업데이트할 예정이니 여기선 구축 중 발생했던 이슈들에 대해 작성해보려고 한다.
-# 1. node group join 문제
+## 1. node group join 문제
 언제나 생각지도 못한 곳에서 허들을 만나지만, 정말 생각지도 못했다. managed node group을 만들기 위해 정말 많은 것들을 해야 했다.
     - eks cluster와 node group의 sg을 별개 resource로 만들고, eks 클러스터를 eksctl로 만들때 기본적으로 생성되는 sg는 cluster sg -> node group과 node group -> cluster sg 모든 통신을 허용해야 한다. 또한 스스로에 대한 통신도 허용해야 하는데, 이건 한 리소스로 구현이 어려워서, 먼저 sg를 선언한 후 rule을 선언해야 한다.
 <div class="code-container">
@@ -179,7 +179,7 @@ resource "aws_security_group_rule" "cluster_node_group_ingress" {
 </div>
 
 <script src="/assets/scripts.js"></script>
-# 2. 네트워크 확인
+## 2. 네트워크 확인
 이거는 내 개인적인 실수이지만 다른 사람들도 충분히 할만하여 공유한다. 보통은 vpc를 구성할때 2개의 az에 만들텐데, public은 igw를 private은 nat gw를 라우팅 테이블로 연결해야 한다. 그때 챗지피티가 시키는대로만 만들면 하나의 서브넷에만 라우팅 테이블이 연결된다.
 <div class="code-container">
   <button onclick="toggleCode(this)" class="toggle-btn" data-code="code-block-4">vpc 라우팅 연결 관련 tf 파일</button>
@@ -205,7 +205,7 @@ resource "aws_route_table_association" "private" {
 
 <script src="/assets/scripts.js"></script>
 
-# 3. 노드 내의 user data 확인
+## 3. 노드 내의 user data 확인
 eksctl로 node group을 생성하면 어떤 방법인지 각 노드에 user group을 잘 넣어주는 것 같다. 그러나 테라폼으로 만들면, 이게 안돼서 각 노드에 user-data를 직접 넣어줘야 한다. 여기서 user-data란, 노드 그룹이 노드들을 클러스터에 조인시키려면 노드가 클러스터 endpoint url과 인증서 정보를 가지고 있어야 가능하기 때문에, 그 정보를 넣어주는 것이다.
 
 
