@@ -56,6 +56,17 @@ echo -e "proxy=http://{proxy-ip}:3128\nsslverify=false" | sudo tee -a /etc/yum.c
 
 **2. ssm 접근 관련 이슈**
   - 구축 완료 후 ssm 연결이 안되는 이슈가 생겼다. aws 콘솔 이용에는 문제가 없었으나, ssm 연결하려고 하면 무한 타임아웃이 발생했다.
+  - 이는 https가 아닌 http 통신과 websocket 관련 처리 설정이 없어서 발생한 문제로, 일반적인 웹서비스는 앞의 두 서비스 없이도 이용 가능하지만 ssm은 그게 불가능했기에 아래 설정의 추가가 필요했다.
+```conf
+http_port 3128 # https가 아닌 http 패킷을 처리할 설정 추가
+
+# 웹소켓 관련 설정 추가
+# Define ACL for SSL ports and CONNECT method
+acl SSL_ports port 443  # Allow HTTPS connections on port 443 (used for WebSocket)
+acl CONNECT method CONNECT
+http_access allow CONNECT SSL_ports
+http_access allow CONNECT allowed_http_sites
+```
 
 ---
 
