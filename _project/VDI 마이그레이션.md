@@ -55,7 +55,7 @@ echo -e "proxy=http://{proxy-ip}:3128\nsslverify=false" | sudo tee -a /etc/yum.c
 ```
 
 **2. ssm 접근 관련 이슈**
-  - 구축 완료 후 .
+  - 구축 완료 후 ssm 연결이 안되는 이슈가 생겼다. aws 콘솔 이용에는 문제가 없었으나, ssm 연결하려고 하면 무한 타임아웃이 발생했다.
 
 ---
 
