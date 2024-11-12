@@ -53,6 +53,10 @@ last_modified_at: 2023-10-30 # GitHub Actions로 자동 업데이트
 ```bash
 echo -e "proxy=http://{proxy-ip}:3128\nsslverify=false" | sudo tee -a /etc/yum.conf
 ```
+
+**2. ssm 접근 관련 이슈**
+  - 구축 완료 후 .
+
 ---
 
 ## 결론
