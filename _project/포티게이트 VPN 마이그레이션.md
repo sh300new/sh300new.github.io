@@ -1,7 +1,7 @@
 ---
 title: 포티게이트 VPN 마이그레이션
 date: 2024-10-29 # 최초 작성일 수동 입력
-last_modified_at: 2023-10-30 # GitHub Actions로 자동 업데이트
+last_modified_at: 2024-10-30 # GitHub Actions로 자동 업데이트
 ---
 
 # 포티게이트 VPN 마이그레이션

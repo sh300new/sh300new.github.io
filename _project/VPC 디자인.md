@@ -1,7 +1,7 @@
 ---
 title: AWS VPC 디자인 및 보안정책 적용 자동화
 date: 2024-11-10 최초 작성일 수동 입력
-last_modified_at: 2023-10-30 # GitHub Actions로 자동 업데이트
+last_modified_at: 2024-11-10 # GitHub Actions로 자동 업데이트
 ---
 
 # AWS VPC 디자인 및 보안정책 적용 자동화

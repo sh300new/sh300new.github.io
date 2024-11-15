@@ -1,7 +1,7 @@
 ---
 title: ecs 리툴 eks 마이그레이션
 date: 2024-10-29 # 최초 작성일 수동 입력
-last_modified_at: 2023-10-30 # GitHub Actions로 자동 업데이트
+last_modified_at: 2024-11-15 # GitHub Actions로 자동 업데이트
 ---
 
 # ecs 서비스 eks 마이그레이션
@@ -179,7 +179,7 @@ resource "aws_security_group_rule" "cluster_node_group_ingress" {
 </div>
 
 <script src="/assets/scripts.js"></script>
-**4. 네트워크 확인**
+**4. 네트워크 확인**  
 이거는 내 개인적인 실수이지만 다른 사람들도 충분히 할만하여 공유한다. 보통은 vpc를 구성할때 2개의 az에 만들텐데, public은 igw를 private은 nat gw를 라우팅 테이블로 연결해야 한다. 그때 챗지피티가 시키는대로만 만들면 하나의 서브넷에만 라우팅 테이블이 연결된다.
 <div class="code-container">
   <button onclick="toggleCode(this)" class="toggle-btn" data-code="code-block-4">vpc 라우팅 연결 관련 tf 파일</button>
@@ -205,7 +205,7 @@ resource "aws_route_table_association" "private" {
 
 <script src="/assets/scripts.js"></script>
 
-**5. 노드 내 user data 확인**
+**5. 노드 내 user data 확인**  
 eksctl로 node group을 생성하면 어떤 방법인지 각 노드에 user group을 잘 넣어주는 것 같다. 그러나 테라폼으로 만들면, 이게 안돼서 각 노드에 user-data를 직접 넣어줘야 한다. 여기서 user-data란, 노드 그룹이 노드들을 클러스터에 조인시키려면 노드가 클러스터 endpoint url과 인증서 정보를 가지고 있어야 가능하기 때문에, 그 정보를 넣어주는 것이다.
 
 
