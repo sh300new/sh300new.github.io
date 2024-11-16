@@ -92,8 +92,13 @@ range 함수도 리스트의 인덱싱과 슬라이싱처럼 range(end, start, -
 
 ```python
 #다만 리스트 인덱싱과 다른 점은 가운데 0을 비워둘 수 없다는 것
-print(range(4, 0, -1))  # [5, 4, 3, 2]
+print(list(range(4, 0, -1)))  # [5, 4, 3, 2] 
 ```
+
+range 객체는 보통 list로 쓰기 위함이지만, 그냥 range() 객체를 호출하면 range 객체가 출력된다. 
+그 이유는 100만의 range를 호출했을 때 바로 list를 생성하면 메모리 사용을 갑자기 많이 해야 하기 때문에  
+lazy evaluation을 활용하여 호출될때마다 값을 생성하는 것이다. 만약 range를 그냥 바로 list로 쓰고 싶다면 list로 타입변환 해주면 된다.
+
 --- 
 
 
@@ -145,3 +150,110 @@ print(list(itertools.product([1, 2], ['A', 'B'])))
 # 결과: [(1, 'A'), (1, 'B'), (2, 'A'), (2, 'B')]
 ```
 ---
+## defaultdict
+
+우리의 친구 collections 모듈의 defaultdict라는 클래스가 있다. 예전에 try: dict[a] += 1 except: dict[a] == 1  
+이런식으로 표현해야 했던 dict 자료형을 쓰기 편하게 해주는 클래스인데, 만약 key가 해당 dict에 없다면 추가한 후 해당 작업을 수행한다.  
+다만 주의사항은 한번 선언된 디폴트딕트 객체는 계속 디폴트 딕트기에 연산이 끝난 후 dict로 변환해 주는 것이 안전하다.
+```python
+from collections import defaultdict
+dicta = defaultdict(int)
+dataa[1] += 1 
+dataa[2] += 1
+
+normal_dicta = dict(dicta)
+```
+---
+## set 자료형
+
+python에는 dict와 비슷한 자료형이 있는 set이다. value를 가지지 않는 dict라고 보면 된다.
+근데 이 녀석이 아주 재미있는게, dict와 같이 hash 방식으로 데이터를 저장하기 때문에 시간 복잡도도 inset, find 모두 O(1)이고
+중복되는 데이터도 자동으로 삭제해주기 때문에 코딩 테스트에서 매우 유용한 자료형이다.
+기본적으로 add, remove, update(list를 넣을때) 등을 사용하고 추가로 여러 기능들을 제공한다.
+```python
+# 1. 집합 연산
+a = {1, 2, 3}
+b = {3, 4, 5}
+c = {5, 6}
+
+# 합집합
+print(a | b)  # {1, 2, 3, 4, 5}
+print(a.union(b))  # {1, 2, 3, 4, 5}
+
+# 교집합
+print(a & b)  # {3}
+print(a.intersection(b))  # {3}
+
+# 차집합
+print(a - b)  # {1, 2}
+print(a.difference(b))  # {1, 2}
+
+# 대칭차집합
+print(a ^ b)  # {1, 2, 4, 5}
+print(a.symmetric_difference(b))  # {1, 2, 4, 5}
+
+# 2. 집합 비교
+# 부분집합 확인
+print(a.issubset(b))  # False
+print({1, 2}.issubset({1, 2, 3, 4}))  # True
+
+# 상위집합 확인
+print(b.issuperset(a))  # False
+
+# 교집합 여부 확인
+print(a.isdisjoint(c))  # True
+
+# 3. 원소 삭제
+# remove
+a = {1, 2, 3}
+a.remove(2)  # {1, 3}
+print(a)
+# a.remove(4)  # KeyError 발생
+
+# discard
+a.discard(4)  # 에러 없음
+
+# pop
+removed_item = a.pop()
+print(removed_item)  # 1 또는 3
+print(a)  # 남은 원소
+
+# clear
+a.clear()
+print(a)  # set()
+
+# 4. 복사
+# copy
+a = {1, 2, 3}
+b = a.copy()
+print(b)  # {1, 2, 3}
+
+# 5. 기타 활용
+# 길이 확인
+print(len(a))  # 3
+
+# 존재 여부 확인
+print(2 in a)  # True
+print(4 in a)  # False
+
+# 이터레이션
+for item in a:
+    print(item)
+
+# 활용 예제: 중복 제거
+lst = [1, 2, 2, 3, 4, 4, 5]
+unique_set = set(lst)
+print(unique_set)  # {1, 2, 3, 4, 5}
+
+# 응용: 집합을 활용한 문제 해결
+list1 = [1, 2, 3, 4]
+list2 = [3, 4, 5, 6]
+
+# 교집합 활용: 두 리스트의 공통 원소
+common = set(list1) & set(list2)
+print(common)  # {3, 4}
+
+# 대칭차집합 활용: 서로 다른 원소 찾기
+diff = set(list1) ^ set(list2)
+print(diff)  # {1, 2, 5, 6}
+```
