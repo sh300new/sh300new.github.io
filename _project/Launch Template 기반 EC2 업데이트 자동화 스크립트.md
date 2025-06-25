@@ -57,7 +57,7 @@ ASG를 업데이트하고 인스턴스 리프레시까지 자동 수행하는 �
   * 설정: `MinHealthyPercentage = 90`, `InstanceWarmup = 300`
 
 <div class="code-container">
-  <button onclick="toggleCode(this)" class="toggle-btn" data-code="code-block-1">asg_userdata_update.py</button>
+  <button onclick="toggleCode(this)" class="toggle-btn" data-code="code-block-1">asg_update.py</button>
   <pre id="code-block-1" class="code-block">
     <code>
 #!/usr/bin/env python3
@@ -67,9 +67,9 @@ import sys
 from botocore.exceptions import ClientError
 
 # ▼ 여기에 AWS 프로파일, 리전, ASG 이름을 변수로 지정하세요 ▼
-PROFILE_NAME = "gopax-qa"
-REGION_NAME = "ap-northeast-1"
-ASG_NAME     = "gopax-qa-revised-ResourceStack-F72OU1UW2O9V-EC2MMTrackerToolAutoScalingGroup-9YM8O9OUFHOC"
+PROFILE_NAME = ""
+REGION_NAME = "ap-northeast-2"
+ASG_NAME     = ""
 # ▲ 여기까지 수정하면 됩니다 ▲
 
 def get_asg_details(asg_client, asg_name):
@@ -252,7 +252,7 @@ if __name__ == "__main__":
 </code> </pre> <button onclick="copyCode(this)" class="copy-btn" data-copy="code-block-1" style="display: none;">Copy</button>
 
 </div>
-
+<script src="/assets/scripts.js"></script>
 ---
 
 ## 운영 단계

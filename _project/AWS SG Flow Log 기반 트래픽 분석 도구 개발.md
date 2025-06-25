@@ -51,7 +51,7 @@ last_modified_at: 2025-06-25
      - `- allow tcp ports 20000~30000 from 10.0.0.0/24`
 
 <div class="code-container">
-  <button onclick="toggleCode(this)" class="toggle-btn" data-code="code-block-1">asg_userdata_update.py</button>
+  <button onclick="toggleCode(this)" class="toggle-btn" data-code="code-block-1">anal_flow_log.py</button>
   <pre id="code-block-1" class="code-block">
     <code>
 
@@ -358,9 +358,8 @@ if __name__ == "__main__":
     display_direction("Outbound", out_data)
 
 </code> </pre> <button onclick="copyCode(this)" class="copy-btn" data-copy="code-block-1" style="display: none;">Copy</button>
-
 </div>
-
+<script src="/assets/scripts.js"></script>
 ---
 
 ## 운영 단계
