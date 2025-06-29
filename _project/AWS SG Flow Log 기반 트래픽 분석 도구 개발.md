@@ -320,7 +320,7 @@ for sg in security_groups:
 
 <div class="code-container">
   <button onclick="toggleCode(this)" class="toggle-btn" data-code="code-block-2">anal_flow_log.py</button>
-  <pre id="code-block-1" class="code-block">
+  <pre id="code-block-2" class="code-block">
     <code>
 
 # -*- coding: utf-8 -*-
@@ -657,12 +657,6 @@ if __name__ == "__main__":
 * CloudTrail과 연계하여 정책 변경 이력 추적 기능 추가
 * SG 과도 허용 탐지 결과를 기반으로 알림 또는 자동 수정 기능 연계
 
-
-
-
-
-
-## 여기까지
 
 
 ---
